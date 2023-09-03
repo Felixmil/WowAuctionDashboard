@@ -103,7 +103,7 @@ server <- function(input, output, session) {
     
     fixed_search_string <- str_replace_all(input$search," ","%20")
     
-    search_url <- glue("https://api.nexushub.co/wow-classic/v1/search?query={fixed_search_string}&limit=20&threshold=1")
+    search_url <- glue("https://api.nexushub.co/wow-classic/v1/search?query={fixed_search_string}&limit=50&threshold=1")
     
     search_json <- request(search_url) |> req_perform() |> resp_body_json()
     
