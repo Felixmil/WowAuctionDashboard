@@ -6,6 +6,10 @@ box::use(
   htmltools[css]
 )
 
+box::use(
+  app/logic/value_formating
+)
+
 #' @export
 ui <- function(id) {
   ns <- NS(id)
@@ -59,27 +63,27 @@ server <- function(id, selected_item, item_data) {
     
     
     output$price_avg <- renderText({
-      stats()$price_avg
+      value_formating$format_coins(value_formating$value_to_coins(stats()$price_avg))
     })
     
     output$price_min <- renderText({
-      stats()$price_min
+      value_formating$format_coins(value_formating$value_to_coins(stats()$price_min))
     })
     
     output$price_max <- renderText({
-      stats()$price_max
+      value_formating$format_coins(value_formating$value_to_coins(stats()$price_max))
     })
     
     output$quantity_avg <- renderText({
-      stats()$quantity_avg
+      round(stats()$quantity_avg)
     })
     
     output$quantity_min <- renderText({
-      stats()$quantity_min
+      round(stats()$quantity_min)
     })
     
     output$quantity_max <- renderText({
-      stats()$quantity_max
+      round(stats()$quantity_max)
     })
     
     
